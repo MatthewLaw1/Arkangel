@@ -9,6 +9,10 @@ import base64
 from PIL import Image
 import io
 import shutil
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import threading
+import json
 
 # Load environment variables
 load_dotenv()
@@ -22,6 +26,18 @@ SCREENSHOT_DIR.mkdir(exist_ok=True)
 
 # The task we're supposed to be working on
 CURRENT_TASK = "Working on a math project - solving calculus problems"
+
+# Store analysis results
+latest_analysis = {
+    "focused": False,
+    "mainContent": "",
+    "activeDistractions": "",
+    "reasoning": "",
+    "timestamp": ""
+}
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 def take_screenshot():
     with mss.mss() as sct:
@@ -145,11 +161,28 @@ REASONING: [2-3 sentences explaining your conclusion, weighted heavily on main c
         }]
     )
     
-    return message.content[0].text
+    response_text = message.content[0].text
+    
+    # Parse Claude's response
+    focused = "yes" in response_text.split("FOCUSED:")[1].split("\n")[0].lower()
+    main_content = response_text.split("MAIN CONTENT:")[1].split("\n")[0].strip()
+    active_distractions = response_text.split("ACTIVE DISTRACTIONS:")[1].split("\n")[0].strip()
+    reasoning = response_text.split("REASONING:")[1].strip()
+    
+    # Update the latest analysis
+    global latest_analysis
+    latest_analysis = {
+        "focused": focused,
+        "mainContent": main_content,
+        "activeDistractions": active_distractions,
+        "reasoning": reasoning,
+        "timestamp": datetime.now().isoformat()
+    }
+    
+    return response_text
 
-def main():
+def monitor_focus():
     print(f"Starting distraction monitor for task: {CURRENT_TASK}")
-    print("Press Ctrl+C to stop...")
     
     try:
         while True:
@@ -161,10 +194,48 @@ def main():
             print("\nWaiting 2 seconds...")
             time.sleep(2)
             
-    except KeyboardInterrupt:
-        print("\nStopping distraction monitor...")
     except Exception as e:
         print(f"\nError occurred: {e}")
+
+# API Endpoints
+@app.route('/api/analysis', methods=['GET'])
+def get_analysis():
+    return jsonify(latest_analysis)
+
+@app.route('/api/task', methods=['GET'])
+def get_task():
+    return jsonify({"task": CURRENT_TASK})
+
+@app.route('/api/task', methods=['POST'])
+def update_task():
+    global CURRENT_TASK
+    data = request.json
+    if 'task' in data:
+        CURRENT_TASK = data['task']
+        return jsonify({"success": True, "task": CURRENT_TASK})
+    return jsonify({"success": False, "error": "No task provided"}), 400
+
+@app.route('/api/analyze', methods=['POST'])
+def manual_analyze():
+    if 'image' not in request.files:
+        return jsonify({"success": False, "error": "No image provided"}), 400
+    
+    file = request.files['image']
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = SCREENSHOT_DIR / f"manual_{timestamp}.png"
+    file.save(filename)
+    
+    analysis = analyze_screenshot(filename)
+    return jsonify({"success": True, "analysis": latest_analysis})
+
+def main():
+    # Start the focus monitoring in a separate thread
+    monitor_thread = threading.Thread(target=monitor_focus)
+    monitor_thread.daemon = True
+    monitor_thread.start()
+    
+    # Start the Flask API server
+    app.run(host='0.0.0.0', port=5000)
 
 if __name__ == "__main__":
     main() 
