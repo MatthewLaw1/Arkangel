@@ -140,26 +140,32 @@ pre {{
 def test_distraction_handler():
     print("\n🧪 Testing distraction handler...")
     
-    # Create a sample analysis
-    test_analysis = """FOCUSED: no
+    try:
+        # Create a sample analysis
+        test_analysis = """FOCUSED: no
 MAIN CONTENT: Test content for debugging
 ACTIVE DISTRACTIONS: none
 REASONING: This is a test analysis."""
-    
-    # Take a real screenshot to test with
-    screenshot_path = take_screenshot()
-    print(f"Using screenshot: {screenshot_path}")
-    
-    # Create and test the distraction manager
-    manager = DistractionManager()
-    try:
-        print("Calling handle_distraction...")
-        manager.handle_distraction(test_analysis, screenshot_path)
-        print("✅ Distraction handler test completed")
+        
+        # Take a real screenshot to test with
+        screenshot_path = take_screenshot()
+        print(f"Using screenshot: {screenshot_path}")
+        
+        # Create and test the distraction manager
+        manager = DistractionManager()
+        try:
+            print("Calling handle_distraction...")
+            manager.handle_distraction(test_analysis, screenshot_path)
+            print("✅ Distraction handler test completed")
+        except Exception as e:
+            print(f"❌ Error during test: {str(e)}")
+        finally:
+            manager.cleanup()
+            
+        return True
     except Exception as e:
-        print(f"❌ Error during test: {str(e)}")
-    finally:
-        manager.cleanup()
+        print(f"❌ Test failed: {str(e)}")
+        return False
 
 class DistractionManager:
     def __init__(self):
@@ -313,7 +319,25 @@ REASONING: [2-3 sentences explaining your conclusion, weighted heavily on main c
         }]
     )
     
-    return message.content[0].text
+    response_text = message.content[0].text
+    
+    # Parse Claude's response
+    focused = "yes" in response_text.split("FOCUSED:")[1].split("\n")[0].lower()
+    main_content = response_text.split("MAIN CONTENT:")[1].split("\n")[0].strip()
+    active_distractions = response_text.split("ACTIVE DISTRACTIONS:")[1].split("\n")[0].strip()
+    reasoning = response_text.split("REASONING:")[1].strip()
+    
+    # Update the latest analysis
+    global latest_analysis
+    latest_analysis = {
+        "focused": focused,
+        "mainContent": main_content,
+        "activeDistractions": active_distractions,
+        "reasoning": reasoning,
+        "timestamp": datetime.now().isoformat()
+    }
+    
+    return response_text
 
 def resize_image(image_path, max_size_mb=4):
     # Open the image
@@ -350,37 +374,11 @@ def resize_image(image_path, max_size_mb=4):
                 img = img.resize((width, height), Image.Resampling.LANCZOS)
                 quality = 95
 
-def main():
-    logging.info(f"Starting distraction monitor for task: {CURRENT_TASK}")
-    print("Press Ctrl+C to stop...")
-    
-    # Run the test first
-    test_distraction_handler()
-    
-    print("\n🔄 Starting main monitoring loop...")
-    distraction_manager = DistractionManager()
-    response_text = message.content[0].text
-    
-    # Parse Claude's response
-    focused = "yes" in response_text.split("FOCUSED:")[1].split("\n")[0].lower()
-    main_content = response_text.split("MAIN CONTENT:")[1].split("\n")[0].strip()
-    active_distractions = response_text.split("ACTIVE DISTRACTIONS:")[1].split("\n")[0].strip()
-    reasoning = response_text.split("REASONING:")[1].strip()
-    
-    # Update the latest analysis
-    global latest_analysis
-    latest_analysis = {
-        "focused": focused,
-        "mainContent": main_content,
-        "activeDistractions": active_distractions,
-        "reasoning": reasoning,
-        "timestamp": datetime.now().isoformat()
-    }
-    
-    return response_text
-
 def monitor_focus():
     print(f"Starting distraction monitor for task: {CURRENT_TASK}")
+    
+    # Initialize the distraction manager
+    distraction_manager = DistractionManager()
     
     try:
         while True:
@@ -450,6 +448,16 @@ def manual_analyze():
     return jsonify({"success": True, "analysis": latest_analysis})
 
 def main():
+    logging.info(f"Starting distraction monitor for task: {CURRENT_TASK}")
+    print("Press Ctrl+C to stop...")
+    
+    # Run the test first
+    if not test_distraction_handler():
+        print("❌ Tests failed. Please check the logs and try again.")
+        return
+    
+    print("\n🔄 Starting main monitoring loop...")
+    
     # Start the focus monitoring in a separate thread
     monitor_thread = threading.Thread(target=monitor_focus)
     monitor_thread.daemon = True
