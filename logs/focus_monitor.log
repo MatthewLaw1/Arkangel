@@ -1,78 +1,99 @@
-2025-04-30 20:13:00,264 - INFO - Starting distraction monitor for task: Working on a math project - solving calculus problems
-2025-04-30 20:13:00,274 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-04-30 20:26:38,484 - INFO - Starting distraction monitor for task: Working on a math project - solving calculus problems
+2025-04-30 20:26:38,506 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://10.40.200.253:5000
-2025-04-30 20:13:00,274 - INFO - [33mPress CTRL+C to quit[0m
-2025-04-30 20:13:06,485 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:06] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:07,085 - INFO - Analysis result: FOCUSED: yes
+2025-04-30 20:26:38,506 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 20:26:44,954 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:44] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:45,193 - INFO - Analysis result: FOCUSED: yes
 
-The main content of the screen shows active development work on a focus monitoring system, which appears to be productive progress towards the stated goal of working on a math project and solving calculus problems.
+The screenshot shows the user actively working on development and testing of a focus monitoring system, which based on the provided guidelines is considered productive work towards the stated math project goal. The code being worked on in the main text editor window takes up the vast majority of the screen space.
 
-There are no clear distractions visible that are actively playing media, taking up significant screen space, or clearly drawing attention away from the work at hand. The browser automation messages can be ignored as per the provided guidelines, as they seem to be part of the monitoring system being developed.
+There are no apparent active distractions like videos playing or other non-work related content commanding significant attention. The terminal output at the bottom, while taking up some space, appears directly related to running and debugging the focus monitoring code.
 
-Overall, based on the dominance of relevant development work and lack of major distractions, the screenshot indicates a focused state aligned with making progress on the stated task.
-2025-04-30 20:13:08,520 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:08] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:10,555 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:10] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:12,592 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:12] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:14,652 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:14] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:16,687 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:16] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:18,396 - INFO - Analysis result: FOCUSED: yes
+So in summary, the user seems focused on relevant development work to make progress on their math project, without any major distractions visible in the screenshot.
+2025-04-30 20:26:47,000 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:47] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:49,033 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:49] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:51,103 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:51] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:53,153 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:53] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:55,195 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:55] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:56,489 - INFO - Analysis result: FOCUSED: yes
 
-The main content of the screen shows active development work on a focus monitoring system, which aligns with making progress on the stated goal of "working on a math project - solving calculus problems". The code and terminal output indicate productive work being done to enhance the monitoring capabilities.
+Based on the provided guidelines and analysis of the screenshot, the user seems focused on relevant development work to make progress on their math project.
 
-There are no clear distractions visible that are actively playing media, taking up significant screen space, or clearly drawing attention away from the main development task. The informational panel about browser-based distractions seems to be part of the productive work on the focus system itself, not an unrelated distraction.
+The main content dominating the screen is a code editor showing a Python script called "main.py" which appears to be implementing tests and monitoring functionality for the focus monitoring system. Development work on this system is considered productive according to the guidelines.
 
-Overall, based on the dominance of relevant development work and lack of major distractions, the screenshot indicates a focused state aligned with making progress on the stated task.
-2025-04-30 20:13:18,721 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:18] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:20,754 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:20] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:22,780 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:22] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:24,821 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:24] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:26,851 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:26] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:28,548 - INFO - Analysis result: FOCUSED: yes
+There are no apparent active distractions like videos playing, non-work related content taking up significant screen space, or anything clearly engaging attention away from the productive development work.
 
-The main content of the screen shows active development work on a focus monitoring system, which aligns with making progress on the stated goal of "working on a math project - solving calculus problems". The code and terminal output indicates productive work being done to enhance the monitoring system itself, not an unrelated distraction.
+The terminal output at the bottom, while taking up some space, looks related to running and debugging the monitoring system code. The Chrome browser message can be ignored as stated in the guidelines since it's part of the system.
 
-There are no clear distractions visible that are actively playing media, taking up significant screen space, or clearly drawing attention away from the main development task. The informational browser-based instructions seen to be part of the productive work on the focus system itself, not an unrelated distraction.
+So in summary, the user seems focused on making progress towards their stated math project goal, without any major distractions visible in the screenshot. The code being worked on takes up the vast majority of the screen space.
+2025-04-30 20:26:57,224 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:57] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:26:59,269 - INFO - 127.0.0.1 - - [30/Apr/2025 20:26:59] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:01,308 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:01] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:03,346 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:03] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:05,408 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:05] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:05,604 - INFO - Analysis result: FOCUSED: no
 
-Overall, based on the dominance of relevant development work and lack of major distractions, the screenshot indicates a focused state aligned with making progress on the stated task.
-2025-04-30 20:13:28,892 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:28] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:30,932 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:30] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:32,969 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:32] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:35,029 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:35] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:37,064 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:37] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:38,315 - INFO - Analysis result: FOCUSED: no
+The main content dominating the screen is the TikTok Ads Manager dashboard and campaign management tools. This does not appear to be directly related to solving calculus problems or making clear progress on your stated math project.
 
-The main content on the screen appears to be an advertising management dashboard on TikTok. This does not seem directly related to solving calculus problems for a math project, which was stated as the current task.
+While I don't see any major active distractions like videos playing, the TikTok interface is taking up the entire focus and engaging your attention away from the intended productive work on calculus.
 
-While there are no obvious active video/audio distractions or unrelated applications taking up significant screen space, the TikTok ad manager dominates the screen and seems to be engaging attention away from the stated goal of working on calculus problems.
+Even being lenient, I would assess that based on this screenshot, you are currently distracted from making meaningful progress on your math project. The screen shows a clear pivot to unrelated social media advertising tasks rather than a focused effort on the calculus problems you aimed to solve.
+2025-04-30 20:27:07,437 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:07] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:09,474 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:09] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:11,498 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:11] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:13,527 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:13] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:15,589 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:15] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:17,205 - INFO - Analysis result: FOCUSED: no
 
-Based on the provided guidelines to be lenient and only mark as unfocused if there are clear distractions, I would assess that this screenshot shows a lack of focus on the math project. The advertising dashboard is a distraction pulling attention away from the calculus work you mentioned you should be concentrating on.
-2025-04-30 20:13:39,095 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:39] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:41,135 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:41] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:43,164 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:43] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:45,207 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:45] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:47,241 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:47] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:49,283 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:49] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:50,229 - INFO - Analysis result: FOCUSED: no
+The main content dominating the screen is the TikTok Ads Manager dashboard and campaign management tools. This does not appear to be directly related to solving calculus problems or making clear progress on your stated math project.
 
-The main content on the screen appears to be an advertising management dashboard on TikTok. This does not seem directly related to solving calculus problems for a math project, which was stated as the current task.
+While I don't see any major active distractions like videos playing, the TikTok interface is taking up the entire focus and engaging your attention away from the intended productive work on calculus.
 
-While there are no obvious active video/audio distractions or unrelated applications taking up significant screen space, the TikTok ad manager dominates the screen and attention seems to be engaging with it rather than calculus problems.
+Even being lenient, I would assess that based on this screenshot, you are currently distracted from making meaningful progress on your math project. The screen shows a clear pivot to unrelated social media advertising tasks rather than a focused effort on the calculus problems you aimed to solve.
+2025-04-30 20:27:17,623 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:17] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:19,645 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:19] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:21,670 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:21] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:23,700 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:23] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:25,741 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:25] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:27,777 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:27] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:28,138 - INFO - Analysis result: FOCUSED: no
 
-Based on the provided guidelines to be lenient and only mark as unfocused if there are clear distractions, I would assess that this screenshot shows a lack of focus on the main project. The advertising dashboard is a distraction pulling attention away from the calculus work you mentioned you should be concentrating on for your stated goal of working on calculus problems.
-2025-04-30 20:13:51,314 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:51] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:53,341 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:53] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:55,384 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:55] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:57,421 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:57] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:13:59,456 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:59] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:14:00,080 - INFO - Analysis result: FOCUSED: no
+Based on the screenshot, it appears you are actively distracted from your stated task of working on a math project and solving calculus problems. The main content dominating the screen is a Google search result page about an online traffic detection system, which is unrelated to your math project. While development work on this focus monitoring system would be considered productive according to the guidelines, the content shown does not seem directly related to that either.
 
-The main content on the screen appears to be an advertising management dashboard on TikTok. This does not seem directly related to solving calculus problems for a math project, which was stated as the current task.
+The small chat window in the lower right corner does not appear to be a significant distraction based on the criteria provided, as it is not actively playing media or taking up substantial screen space.
 
-While there are no obvious active video/audio distractions or unrelated applications taking up significant screen space, the TikTok ad manager dominates the screen and attention seems to be engaged with it rather than calculus problems.
+However, since the primary focus of the screen is not on your stated math project or the development of the focus monitoring system, I would assess that you are currently distracted from your intended productive work.
+2025-04-30 20:27:29,815 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:29] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:31,842 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:31] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:33,874 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:33] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:35,907 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:35] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:37,950 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:37] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:38,912 - INFO - Analysis result: FOCUSED: no
 
-Based on the provided guidelines to be lenient and only mark as unfocused if there are clear distractions, I would assess that this screenshot shows a lack of focus on the main project. The advertising dashboard is a distraction pulling attention away from the stated goal of working on calculus problems.
-2025-04-30 20:14:01,488 - INFO - 127.0.0.1 - - [30/Apr/2025 20:14:01] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:14:03,523 - INFO - 127.0.0.1 - - [30/Apr/2025 20:14:03] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 20:14:05,551 - INFO - 127.0.0.1 - - [30/Apr/2025 20:14:05] "GET /api/analysis HTTP/1.1" 200 -
+Based on the screenshot, it appears you are currently distracted from your stated task of working on a math project and solving calculus problems. The main content dominating the screen is a Google search result page about an online traffic detection system, which is unrelated to your math project. While development work on this focus monitoring system would be considered productive according to the guidelines, the content shown does not seem directly related to that either.
+
+The small chat window in the lower right corner does not appear to be a significant distraction based on the criteria provided, as it is not actively playing media or taking up substantial screen space.
+
+However, since the primary focus of the screen is not on your stated math project or the development of the focus monitoring system, I would assess that you are currently distracted from your intended productive work.
+2025-04-30 20:27:39,990 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:39] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:42,015 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:42] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:44,039 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:44] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:46,073 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:46] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:48,099 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:48] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:49,127 - INFO - Analysis result: FOCUSED: no
+
+Based on the screenshot, it appears you are currently distracted from your stated task of working on a math project and solving calculus problems. The main content dominating the screen is a Google search result page about an online traffic tracking system, which is unrelated to your math project. While development work on this focus monitoring system would be considered productive according to the guidelines, the content shown does not seem directly related to that either.
+
+The small chat window in the lower right corner does not appear to be a significant distraction based on the criteria provided, as it is not actively playing media or taking up substantial screen space.
+
+However, since the primary focus of the screen is not on your stated math project or the development of the focus monitoring system, I would assess that you are currently distracted from your intended productive work.
+2025-04-30 20:27:49,130 - ERROR - Error handling distraction: list index out of range
+Traceback (most recent call last):
+  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/main.py", line 210, in handle_distraction
+    self.driver.switch_to.window(self.driver.window_handles[-1])
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+IndexError: list index out of range
+2025-04-30 20:27:50,129 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:50] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:27:52,173 - INFO - 127.0.0.1 - - [30/Apr/2025 20:27:52] "GET /api/analysis HTTP/1.1" 200 -
