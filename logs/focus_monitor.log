@@ -1,64 +1,78 @@
-2025-04-30 19:54:59,747 - INFO - Starting distraction monitor for task: Working on a math project - solving calculus problems
-2025-04-30 19:55:06,104 - INFO - Distraction detected! Analysis: FOCUSED: no
-MAIN CONTENT: Test content for debugging
-ACTIVE DISTRACTIONS: none
-REASONING: This is a test analysis.
-2025-04-30 19:55:06,224 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-04-30 20:13:00,264 - INFO - Starting distraction monitor for task: Working on a math project - solving calculus problems
+2025-04-30 20:13:00,274 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://10.40.200.253:5000
-2025-04-30 19:55:06,224 - INFO - [33mPress CTRL+C to quit[0m
-2025-04-30 19:55:06,409 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:06] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:06,629 - ERROR - Error occurred: "Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted"
-Traceback (most recent call last):
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/main.py", line 387, in monitor_focus
-    analysis = analyze_screenshot(screenshot_path)
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/main.py", line 300, in analyze_screenshot
-    message = anthropic.messages.create(
-        model="claude-3-opus-20240229",
-    ...<17 lines>...
-        }]
-    )
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/_utils/_utils.py", line 283, in wrapper
-    return func(*args, **kwargs)
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/resources/messages/messages.py", line 948, in create
-    return self._post(
-           ~~~~~~~~~~^
-        "/v1/messages",
-        ^^^^^^^^^^^^^^^
-    ...<25 lines>...
-        stream_cls=Stream[RawMessageStreamEvent],
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/_base_client.py", line 1279, in post
-    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
-                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/_base_client.py", line 998, in request
-    request = self._build_request(options, retries_taken=retries_taken)
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/_base_client.py", line 503, in _build_request
-    headers = self._build_headers(options, retries_taken=retries_taken)
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/_base_client.py", line 444, in _build_headers
-    self._validate_headers(headers_dict, custom_headers)
-    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/jaibhatia/Desktop/CS Projects/Arkangel/venv/lib/python3.13/site-packages/anthropic/_client.py", line 173, in _validate_headers
-    raise TypeError(
-        '"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted"'
-    )
-TypeError: "Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted"
-2025-04-30 19:55:06,633 - INFO - Cleanup completed
-2025-04-30 19:55:08,418 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:08] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:10,422 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:10] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:12,427 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:12] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:14,441 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:14] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:16,458 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:16] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:18,466 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:18] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:20,471 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:20] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:22,479 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:22] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:24,487 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:24] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:26,493 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:26] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:28,499 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:28] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:30,507 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:30] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:32,510 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:32] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:34,520 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:34] "GET /api/analysis HTTP/1.1" 200 -
-2025-04-30 19:55:36,525 - INFO - 127.0.0.1 - - [30/Apr/2025 19:55:36] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:00,274 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 20:13:06,485 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:06] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:07,085 - INFO - Analysis result: FOCUSED: yes
+
+The main content of the screen shows active development work on a focus monitoring system, which appears to be productive progress towards the stated goal of working on a math project and solving calculus problems.
+
+There are no clear distractions visible that are actively playing media, taking up significant screen space, or clearly drawing attention away from the work at hand. The browser automation messages can be ignored as per the provided guidelines, as they seem to be part of the monitoring system being developed.
+
+Overall, based on the dominance of relevant development work and lack of major distractions, the screenshot indicates a focused state aligned with making progress on the stated task.
+2025-04-30 20:13:08,520 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:08] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:10,555 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:10] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:12,592 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:12] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:14,652 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:14] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:16,687 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:16] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:18,396 - INFO - Analysis result: FOCUSED: yes
+
+The main content of the screen shows active development work on a focus monitoring system, which aligns with making progress on the stated goal of "working on a math project - solving calculus problems". The code and terminal output indicate productive work being done to enhance the monitoring capabilities.
+
+There are no clear distractions visible that are actively playing media, taking up significant screen space, or clearly drawing attention away from the main development task. The informational panel about browser-based distractions seems to be part of the productive work on the focus system itself, not an unrelated distraction.
+
+Overall, based on the dominance of relevant development work and lack of major distractions, the screenshot indicates a focused state aligned with making progress on the stated task.
+2025-04-30 20:13:18,721 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:18] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:20,754 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:20] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:22,780 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:22] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:24,821 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:24] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:26,851 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:26] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:28,548 - INFO - Analysis result: FOCUSED: yes
+
+The main content of the screen shows active development work on a focus monitoring system, which aligns with making progress on the stated goal of "working on a math project - solving calculus problems". The code and terminal output indicates productive work being done to enhance the monitoring system itself, not an unrelated distraction.
+
+There are no clear distractions visible that are actively playing media, taking up significant screen space, or clearly drawing attention away from the main development task. The informational browser-based instructions seen to be part of the productive work on the focus system itself, not an unrelated distraction.
+
+Overall, based on the dominance of relevant development work and lack of major distractions, the screenshot indicates a focused state aligned with making progress on the stated task.
+2025-04-30 20:13:28,892 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:28] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:30,932 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:30] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:32,969 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:32] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:35,029 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:35] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:37,064 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:37] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:38,315 - INFO - Analysis result: FOCUSED: no
+
+The main content on the screen appears to be an advertising management dashboard on TikTok. This does not seem directly related to solving calculus problems for a math project, which was stated as the current task.
+
+While there are no obvious active video/audio distractions or unrelated applications taking up significant screen space, the TikTok ad manager dominates the screen and seems to be engaging attention away from the stated goal of working on calculus problems.
+
+Based on the provided guidelines to be lenient and only mark as unfocused if there are clear distractions, I would assess that this screenshot shows a lack of focus on the math project. The advertising dashboard is a distraction pulling attention away from the calculus work you mentioned you should be concentrating on.
+2025-04-30 20:13:39,095 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:39] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:41,135 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:41] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:43,164 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:43] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:45,207 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:45] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:47,241 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:47] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:49,283 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:49] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:50,229 - INFO - Analysis result: FOCUSED: no
+
+The main content on the screen appears to be an advertising management dashboard on TikTok. This does not seem directly related to solving calculus problems for a math project, which was stated as the current task.
+
+While there are no obvious active video/audio distractions or unrelated applications taking up significant screen space, the TikTok ad manager dominates the screen and attention seems to be engaging with it rather than calculus problems.
+
+Based on the provided guidelines to be lenient and only mark as unfocused if there are clear distractions, I would assess that this screenshot shows a lack of focus on the main project. The advertising dashboard is a distraction pulling attention away from the calculus work you mentioned you should be concentrating on for your stated goal of working on calculus problems.
+2025-04-30 20:13:51,314 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:51] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:53,341 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:53] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:55,384 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:55] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:57,421 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:57] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:13:59,456 - INFO - 127.0.0.1 - - [30/Apr/2025 20:13:59] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:14:00,080 - INFO - Analysis result: FOCUSED: no
+
+The main content on the screen appears to be an advertising management dashboard on TikTok. This does not seem directly related to solving calculus problems for a math project, which was stated as the current task.
+
+While there are no obvious active video/audio distractions or unrelated applications taking up significant screen space, the TikTok ad manager dominates the screen and attention seems to be engaged with it rather than calculus problems.
+
+Based on the provided guidelines to be lenient and only mark as unfocused if there are clear distractions, I would assess that this screenshot shows a lack of focus on the main project. The advertising dashboard is a distraction pulling attention away from the stated goal of working on calculus problems.
+2025-04-30 20:14:01,488 - INFO - 127.0.0.1 - - [30/Apr/2025 20:14:01] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:14:03,523 - INFO - 127.0.0.1 - - [30/Apr/2025 20:14:03] "GET /api/analysis HTTP/1.1" 200 -
+2025-04-30 20:14:05,551 - INFO - 127.0.0.1 - - [30/Apr/2025 20:14:05] "GET /api/analysis HTTP/1.1" 200 -

@@ -17,6 +17,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import threading
 import json
+import requests
 
 # Load environment variables
 load_dotenv()
@@ -169,73 +170,93 @@ REASONING: This is a test analysis."""
 
 class DistractionManager:
     def __init__(self):
-        self.consecutive_distractions = 0
-        self.last_reminder_time = 0
         self.driver = None
-        
-    def init_browser(self):
-        print("Initializing browser...")
+    
+    def initialize_browser(self):
+        """Initialize the browser if not already initialized"""
         if self.driver is None:
-            chrome_options = Options()
-            chrome_options.add_argument("--start-maximized")
-            self.driver = webdriver.Chrome(options=chrome_options)
-            # Hide the browser initially
-            self.driver.set_window_position(-2000, 0)
-            time.sleep(2)  # Let the browser settle
-            print("Browser initialized and hidden")
-        
+            options = webdriver.ChromeOptions()
+            # Keep browser visible but move it off-screen
+            options.add_argument('--window-position=-2000,0')
+            self.driver = webdriver.Chrome(options=options)
+    
     def handle_distraction(self, analysis, screenshot_path):
-        print("\n📝 Handling distraction...")
-        current_time = time.time()
-        if current_time - self.last_reminder_time >= 30:
-            try:
-                print("Initializing browser...")
-                self.init_browser()
-                
-                print("Reading screenshot...")
-                with open(screenshot_path, 'rb') as img_file:
-                    screenshot_data = base64.b64encode(img_file.read()).decode('utf-8')
-                
-                print("Creating HTML content...")
-                html_content = DISTRACTION_PAGE.format(
-                    task=CURRENT_TASK,
-                    timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                    analysis=analysis,
-                    screenshot=screenshot_data
-                )
-                
-                # Save HTML file
-                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-                html_path = LOGS_DIR / f"distraction_{timestamp}.html"
-                print(f"Saving HTML to: {html_path}")
-                with open(html_path, 'w', encoding='utf-8') as f:
-                    f.write(html_content)
-                
-                # Open the HTML file in a new tab and make visible
-                file_url = f"file://{html_path.absolute()}"
-                print(f"Opening URL: {file_url}")
-                self.driver.switch_to.new_window('tab')
-                self.driver.set_window_position(0, 0)  # Make browser visible
-                self.driver.get(file_url)
-                print("Browser tab opened and made visible")
-                
-                self.consecutive_distractions += 1
-                self.last_reminder_time = current_time
-                
-                logging.info(f"Distraction detected! Analysis: {analysis}")
-                print("\n🚨 Opening distraction report!")
-                
-            except Exception as e:
-                print(f"❌ Error in handle_distraction: {str(e)}")
-                logging.error(f"Error handling distraction: {str(e)}", exc_info=True)
+        """Handle a detected distraction by showing a report"""
+        try:
+            print("\n📝 Handling distraction...")
+            
+            # Make sure browser is initialized
+            self.initialize_browser()
+            
+            # Create HTML content
+            print("Creating HTML content...")
+            html_content = self.create_distraction_report(analysis, screenshot_path)
+            
+            # Save HTML to file
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            html_path = f"logs/distraction_{timestamp}.html"
+            os.makedirs("logs", exist_ok=True)
+            
+            print(f"Saving HTML to: {html_path}")
+            with open(html_path, "w") as f:
+                f.write(html_content)
+            
+            # Open in browser
+            file_url = f"file://{os.path.abspath(html_path)}"
+            print(f"Opening URL: {file_url}")
+            
+            # Open in new tab and bring window to front
+            self.driver.execute_script("window.open('');")
+            self.driver.switch_to.window(self.driver.window_handles[-1])
+            self.driver.get(file_url)
+            self.driver.set_window_position(0, 0)  # Make visible
+            
+            print("🚨 Opening distraction report!")
+            
+        except Exception as e:
+            print(f"❌ Error in handle_distraction: {str(e)}")
+            logging.error(f"Error handling distraction: {str(e)}", exc_info=True)
+            self.cleanup()  # Cleanup on error
     
     def cleanup(self):
+        """Clean up browser resources"""
         try:
             if self.driver:
                 self.driver.quit()
+                self.driver = None
                 print("Browser cleaned up")
-        except:
-            pass
+        except Exception as e:
+            print(f"Error during cleanup: {str(e)}")
+            
+    def create_distraction_report(self, analysis, screenshot_path):
+        """Create an HTML report for the distraction"""
+        return f"""
+        <html>
+            <head>
+                <title>Focus Check</title>
+                <style>
+                    body {{ font-family: Arial, sans-serif; margin: 40px; }}
+                    .alert {{ background: #ffe6e6; padding: 20px; border-radius: 8px; }}
+                    .analysis {{ white-space: pre-wrap; background: #f5f5f5; padding: 15px; }}
+                    img {{ max-width: 100%; margin-top: 20px; }}
+                </style>
+            </head>
+            <body>
+                <h1>⚠️ Focus Check</h1>
+                <div class="alert">
+                    <h2>You seem to be distracted!</h2>
+                    <p>The system has detected that you're not focused on your task:</p>
+                    <p><strong>Current Task:</strong> {os.getenv('CURRENT_TASK', 'Not specified')}</p>
+                </div>
+                
+                <h3>Analysis:</h3>
+                <div class="analysis">{analysis}</div>
+                
+                <h3>Screenshot:</h3>
+                <img src="file://{os.path.abspath(screenshot_path)}" alt="Screenshot">
+            </body>
+        </html>
+        """
 
 def take_screenshot():
     with mss.mss() as sct:
@@ -266,78 +287,75 @@ def take_screenshot():
         return filename
 
 def analyze_screenshot(filename):
-    # Resize image and get bytes
-    img_bytes = resize_image(filename)
-    base64_image = base64.b64encode(img_bytes).decode('utf-8')
-    
-    # Prepare the prompt for Claude
-    prompt = f"""I am currently: {CURRENT_TASK}
+    try:
+        # Open and convert image to PNG format
+        with Image.open(filename) as img:
+            # Convert to RGB if needed
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            # Save as PNG in memory
+            img_byte_arr = io.BytesIO()
+            img.save(img_byte_arr, format='PNG')
+            img_bytes = img_byte_arr.getvalue()
+            base64_image = base64.b64encode(img_bytes).decode('utf-8')
+        
+        # Prepare the prompt for Claude
+        prompt = f"""I am currently: {CURRENT_TASK}
 
 Please analyze this screenshot holistically, focusing primarily on whether I am making progress on my stated task.
 
 Key Analysis Points:
-1. MAIN CONTENT (80% weight): What content dominates the screen? If it's related to the task (math/calculus), this strongly indicates focus.
+1. MAIN CONTENT (80% weight): What content dominates the screen? Consider development work on this focus monitoring system as acceptable progress.
 2. ACTIVE DISTRACTIONS (20% weight): Only count something as a distraction if it's:
    - Actively playing (video/audio)
    - Taking up significant screen space
-   - Clearly engaging attention (e.g., open chat window with new messages)
+   - Clearly engaging attention away from productive work
    
 Important Guidelines:
-- IGNORE any Chrome automation/testing messages
-- Presence of unrelated tabs/apps alone is NOT a distraction
-- Small UI elements (dock, menubar apps) are NOT distractions
-- If math/calculus content is visible and dominant, consider it FOCUSED regardless of other UI elements
-- Only mark as unfocused if the main content is clearly unrelated to math/calculus OR if there are major active distractions
+- Development work on this focus monitoring system is considered productive
+- IGNORE any Chrome automation/browser-use messages as they're part of the system
+- Start your response with either "FOCUSED: yes" or "FOCUSED: no"
+- Be lenient - only mark as unfocused if there are clear distractions
 
-Respond in this exact format:
-FOCUSED: [yes/no]
-MAIN CONTENT: [describe the dominant content on screen]
-ACTIVE DISTRACTIONS: [none/only list major, active distractions taking significant attention]
-REASONING: [2-3 sentences explaining your conclusion, weighted heavily on main content]
-"""
+Analyze the screenshot and tell me if I'm focused or distracted."""
 
-    # Send to Claude
-    message = anthropic.messages.create(
-        model="claude-3-opus-20240229",
-        max_tokens=1000,
-        messages=[{
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": prompt
-                },
-                {
-                    "type": "image",
-                    "source": {
-                        "type": "base64",
-                        "media_type": "image/jpeg",
-                        "data": base64_image
+        # Create the message for Claude
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": "image/png",
+                            "data": base64_image
+                        }
                     }
-                }
-            ]
-        }]
-    )
-    
-    response_text = message.content[0].text
-    
-    # Parse Claude's response
-    focused = "yes" in response_text.split("FOCUSED:")[1].split("\n")[0].lower()
-    main_content = response_text.split("MAIN CONTENT:")[1].split("\n")[0].strip()
-    active_distractions = response_text.split("ACTIVE DISTRACTIONS:")[1].split("\n")[0].strip()
-    reasoning = response_text.split("REASONING:")[1].strip()
-    
-    # Update the latest analysis
-    global latest_analysis
-    latest_analysis = {
-        "focused": focused,
-        "mainContent": main_content,
-        "activeDistractions": active_distractions,
-        "reasoning": reasoning,
-        "timestamp": datetime.now().isoformat()
-    }
-    
-    return response_text
+                ]
+            }
+        ]
+
+        # Make the API call
+        response = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={
+                "x-api-key": os.getenv('ANTHROPIC_API_KEY'),
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json"
+            },
+            json={"model": "claude-3-opus-20240229", "messages": messages, "max_tokens": 1024}
+        )
+        
+        response.raise_for_status()
+        result = response.json()
+        return result['content'][0]['text']
+        
+    except Exception as e:
+        logging.error(f"Error occurred: {e}", exc_info=True)
+        print(f"Error occurred: {e}")
+        return None
 
 def resize_image(image_path, max_size_mb=4):
     # Open the image
@@ -389,19 +407,23 @@ def monitor_focus():
             print("\nClaude's Analysis:")
             print(analysis)
             
-            # Debug the detection logic
-            print("\nDebug detection:")
-            print(f"Analysis text: '{analysis}'")
-            print(f"Lowercase analysis: '{analysis.lower()}'")
-            print(f"Contains 'FOCUSED: no'? {('FOCUSED: no' in analysis)}")
-            print(f"Contains 'focused: no'? {('focused: no' in analysis.lower())}")
-            
-            # Check if distracted and handle it
-            if ('FOCUSED: no' in analysis) or ('focused: no' in analysis.lower()):
-                print("✅ Distraction detected! Handling...")
-                distraction_manager.handle_distraction(analysis, screenshot_path)
+            # Only proceed with analysis if we got a valid response
+            if analysis:
+                # Debug the detection logic
+                print("\nDebug detection:")
+                print(f"Analysis text: '{analysis}'")
+                print(f"Lowercase analysis: '{analysis.lower()}'")
+                print(f"Contains 'FOCUSED: no'? {('FOCUSED: no' in analysis)}")
+                print(f"Contains 'focused: no'? {('focused: no' in analysis.lower())}")
+                
+                # Check if distracted and handle it
+                if ('FOCUSED: no' in analysis) or ('focused: no' in analysis.lower()):
+                    print("✅ Distraction detected! Handling...")
+                    distraction_manager.handle_distraction(analysis, screenshot_path)
+                else:
+                    print("❌ No distraction detected")
             else:
-                print("❌ No distraction detected")
+                print("Failed to analyze screenshot, will try again...")
             
             print("\nWaiting 2 seconds...")
             time.sleep(2)
@@ -450,11 +472,6 @@ def manual_analyze():
 def main():
     logging.info(f"Starting distraction monitor for task: {CURRENT_TASK}")
     print("Press Ctrl+C to stop...")
-    
-    # Run the test first
-    if not test_distraction_handler():
-        print("❌ Tests failed. Please check the logs and try again.")
-        return
     
     print("\n🔄 Starting main monitoring loop...")
     
