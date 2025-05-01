@@ -1,5 +1,5 @@
 from browser_use import Agent
-from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 import asyncio
 from dotenv import load_dotenv
 import os
@@ -21,14 +21,14 @@ class BrowserController:
         logger.info(f"Loading .env from: {dotenv_path}")
         load_dotenv(dotenv_path)
         
-        # Check if OPENAI_API_KEY is set
-        if not os.getenv('OPENAI_API_KEY'):
-            raise ValueError("OPENAI_API_KEY not found in environment variables")
+        # Check if ANTHROPIC_API_KEY is set
+        if not os.getenv('ANTHROPIC_API_KEY'):
+            raise ValueError("ANTHROPIC_API_KEY not found in environment variables")
         
-        # Initialize browser-use agent
+        # Initialize browser-use agent with Claude
         self.agent = Agent(
             task="Help me stay focused by identifying and closing distracting tabs or windows",
-            llm=ChatOpenAI(model="gpt-4")
+            llm=ChatAnthropic(model="claude-3-opus-20240229")
         )
         self.api_url = "http://localhost:5000"
         self.last_check = 0
