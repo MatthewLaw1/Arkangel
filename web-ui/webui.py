@@ -174,12 +174,6 @@ async def run_browser_agent(
         llm_temperature,
         llm_base_url,
         llm_api_key,
-        use_own_browser,
-        keep_browser_open,
-        headless,
-        disable_security,
-        window_w,
-        window_h,
         save_recording_path,
         save_agent_history_path,
         save_trace_path,
@@ -191,7 +185,13 @@ async def run_browser_agent(
         max_actions_per_step,
         tool_calling_method,
         chrome_cdp,
-        max_input_tokens
+        max_input_tokens,
+        use_own_browser=True,  # Default to using native browser
+        keep_browser_open=True,  # Keep browser open by default
+        headless=False,  # Show the browser
+        disable_security=True,  # Allow opening new windows
+        window_w=900,
+        window_h=600
 ):
     try:
         # Disable recording if the checkbox is unchecked
