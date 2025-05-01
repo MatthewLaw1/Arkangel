@@ -1,0 +1,39 @@
+2025-04-30 16:48:34,848 - INFO - Starting distraction monitor for task: Working on a math project - solving calculus problems
+2025-04-30 16:48:39,892 - INFO - Distraction detected! Analysis: FOCUSED: no
+MAIN CONTENT: Test content for debugging
+ACTIVE DISTRACTIONS: none
+REASONING: This is a test analysis.
+2025-04-30 16:48:48,535 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-04-30 16:48:48,545 - INFO - Analysis result: FOCUSED: yes
+MAIN CONTENT: The screen shows Python code for a main.py file related to a distraction monitor for a math/calculus project. The code is printing out debugging information about starting the distraction monitor and detecting distractions using screenshot analysis.
+ACTIVE DISTRACTIONS: none
+REASONING: The main content on the screen is clearly focused on Python code directly related to the stated math/calculus project. The code is printing information about a distraction monitor being developed for the task. There are no major active distractions visible that would take significant attention away from this coding work on the math project.
+2025-04-30 16:48:57,040 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-04-30 16:48:57,045 - INFO - Analysis result: FOCUSED: yes
+MAIN CONTENT: The screen shows Python code for a distraction monitor related to a math/calculus project. The code is printing out debugging information about starting the distraction monitor and detecting distractions using screenshot analysis.
+ACTIVE DISTRACTIONS: none
+REASONING: The main content on the screen is clearly focused on Python code directly related to the stated math/calculus project. The code is printing information about a distraction monitor being developed for the task. There are no major active distractions visible that would take significant attention away from this coding work on the math project.
+2025-04-30 16:49:04,010 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-04-30 16:49:04,013 - INFO - Analysis result: FOCUSED: no
+MAIN CONTENT: The Google search homepage
+ACTIVE DISTRACTIONS: None
+REASONING: The main content of the screen is the Google search page, which is unrelated to math or calculus problems. While there are no major active distractions, the lack of any math-focused content indicates the user is not currently making progress on their stated task of solving calculus problems for a math project.
+2025-04-30 16:49:09,257 - INFO - Distraction detected! Analysis: FOCUSED: no
+MAIN CONTENT: The Google search homepage
+ACTIVE DISTRACTIONS: None
+REASONING: The main content of the screen is the Google search page, which is unrelated to math or calculus problems. While there are no major active distractions, the lack of any math-focused content indicates the user is not currently making progress on their stated task of solving calculus problems for a math project.
+2025-04-30 16:49:18,275 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-04-30 16:49:18,391 - INFO - Analysis result: FOCUSED: no
+MAIN CONTENT: The Google search homepage
+ACTIVE DISTRACTIONS: None
+REASONING: The main content of the screen is the Google search page, which is unrelated to math or calculus problems. While there are no major active distractions taking up significant attention, the absence of any math or calculus content indicates the user is not currently focused on their stated task.
+2025-04-30 16:49:27,806 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-04-30 16:49:27,809 - INFO - Analysis result: FOCUSED: no
+MAIN CONTENT: The main content of the screen is a Google search page and an active chat window displaying messages from friends. The content is not directly related to solving calculus problems for a math project.
+ACTIVE DISTRACTIONS: The active chat window with new messages from friends is a significant distraction, taking up a substantial portion of the screen and clearly engaging attention with active conversations.
+REASONING: While there is a small window showing some analysis results mentioning the stated math/calculus task, the dominant content on the screen is the Google search page and active chat conversations unrelated to the task at hand. The busy chat window is a major active distraction, indicating a lack of focus on the math project.
+2025-04-30 16:49:31,764 - INFO - Stopping distraction monitor...
+2025-04-30 16:49:31,769 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103b56e90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cdbd530d4ec5d10c37e4f1c538f23474
+2025-04-30 16:49:31,770 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103b57610>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cdbd530d4ec5d10c37e4f1c538f23474
+2025-04-30 16:49:31,771 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103b70050>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cdbd530d4ec5d10c37e4f1c538f23474
+2025-04-30 16:49:31,774 - INFO - Cleanup completed
